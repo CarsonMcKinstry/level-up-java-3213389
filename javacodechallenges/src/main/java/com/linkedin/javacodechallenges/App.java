@@ -5,7 +5,27 @@ import java.util.Scanner;
 public class App {
 
     public static boolean isPasswordComplex(String password) {
-        return false;
+
+        if (password.length() < 6) {
+            return false;
+        }
+
+        boolean hasUpperCase = false;
+        boolean hasLowerCase = false;
+        boolean hasDigit = false;
+
+        for (int i = 0; i < password.length() || (!hasUpperCase && !hasLowerCase && !hasDigit); i++) {
+            char current = password.charAt(i);
+            if (Character.isDigit(current)) {
+                hasDigit = true;
+            } else if (Character.isUpperCase(current)) {
+                hasUpperCase = true;
+            } else if (Character.isLowerCase(current)) {
+                hasLowerCase = true;
+            }
+        }
+
+        return hasUpperCase && hasLowerCase && hasDigit;
     }
 
     public static void main(String[] args) {
